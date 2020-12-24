@@ -56,7 +56,7 @@ public class Mazo {
         }
     }
 
-    public void Tirar(Carta carta) {
+    public void tirar(Carta carta) {
         this.cartasDescubiertas.add(0, carta);
     }
 

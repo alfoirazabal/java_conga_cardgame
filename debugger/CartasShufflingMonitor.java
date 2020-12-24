@@ -40,7 +40,7 @@ public class CartasShufflingMonitor {
             imprimirEncabezadoTabla();
 
             for (int i = 1 ; i <= 12 ; i++) {
-                String[] indicadorPalo = new String[4];
+                String[] indicadorPalo = new String[Palo.PALOS.length];
                 for (int j = 0 ; j < Palo.PALOS.length ; j++) {
                     boolean paloIncluido = cartaImpresa(impresas, Palo.PALOS[j], i);
                     if (paloIncluido) {
@@ -50,6 +50,7 @@ public class CartasShufflingMonitor {
                         indicadorPalo[j] = " ";
                     }
                 }
+
                 System.out.format(formateoTabla, i, indicadorPalo[0], indicadorPalo[1], indicadorPalo[2], indicadorPalo[3]);
 
             }
