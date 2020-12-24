@@ -1,4 +1,4 @@
-import dominio.Carta;
+import dominio.carta.Carta;
 import dominio.Mazo;
 import dominio.Mazo.NoHayCartasParaLevantar;
 
