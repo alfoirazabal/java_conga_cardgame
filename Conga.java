@@ -16,7 +16,7 @@ public class Conga {
         }
 
         debugger.CartasShufflingMonitor monitor = new debugger.CartasShufflingMonitor(mazo.getCartasCubiertas());
-        monitor.imprimirTabla();
+        monitor.imprimirListaDeCartas(mazo.getCartasCubiertas());
     }
 
 }

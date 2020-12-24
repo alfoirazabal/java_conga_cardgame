@@ -97,4 +97,14 @@ public class CartasShufflingMonitor {
 
     }
 
+    public void imprimirListaDeCartas(List<Carta> cartas) {
+        for (Carta carta : cartas) {
+            String espacioExtra = "";
+            if (carta.getNumero() < 10){
+                espacioExtra = " ";
+            }
+            System.out.println(carta.getNumero() + espacioExtra + " " + carta.getPalo().getEmoji());
+        }
+    }
+
 }
