@@ -13,13 +13,17 @@ public class Palo {
         PALOS[0] = new Palo("Basto", "🌵", 0);
         PALOS[1] = new Palo("Oro", "💰", 1);
         PALOS[2] = new Palo("Copa", "🏆", 2);
-        PALOS[3] = new Palo("Espada", "🗡️", 3);
+        PALOS[3] = new Palo("Espada", "🗡️ ", 3);
     }
 
     private Palo(String nombre, String emoji, int ordinal) {
         this.nombre = nombre;
         this.emoji = emoji;
         this.ordinal = (byte)ordinal;
+    }
+
+    public String getEmoji() {
+        return this.emoji;
     }
 
     public byte getOrdinal() {

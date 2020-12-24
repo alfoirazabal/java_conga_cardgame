@@ -26,16 +26,18 @@ public class CartasShufflingMonitor {
 
         System.out.println("\n\n\n\n\n\n\n\n\n\n");
 
-        String formateoTabla = "| %-2d | %-1s | %-1s | %-1s | %-1s |%n";
+        String formateoTabla = "| %-2d |";
+        for (int i = 0 ; i < Palo.PALOS.length ; i++) {
+            formateoTabla += " %-2s |";
+        }
+        formateoTabla += "%n";
 
         while (aImprimir.size() > 0) {
 
             impresas.add(aImprimir.get(0));
             aImprimir.remove(0);
 
-            System.out.format("+----+---+---+---+---+%n");
-            System.out.format("|    | b | o | c | e |%n");
-            System.out.format("+----+---+---+---+---+%n");
+            imprimirEncabezadoTabla();
 
             for (int i = 1 ; i <= 12 ; i++) {
                 String[] indicadorPalo = new String[4];
@@ -52,11 +54,31 @@ public class CartasShufflingMonitor {
 
             }
 
-            System.out.format("+----+---+---+---+---+%n");
+            imprimirBordeDeTablaHorizontal();
 
             this.sc.nextLine();
         }
 
+    }
+
+    private void imprimirEncabezadoTabla() {
+        imprimirBordeDeTablaHorizontal();
+        String celdas = "|    |";
+        for (int i = 0 ; i < Palo.PALOS.length ; i++) {
+            celdas += " " + Palo.PALOS[i].getEmoji() + " |";
+        }
+        celdas += "%n";
+        System.out.format(celdas);
+        imprimirBordeDeTablaHorizontal();
+    }
+
+    private void imprimirBordeDeTablaHorizontal() {
+        String borde = "+----+";
+        for (int i = 0 ; i < Palo.PALOS.length ; i++) {
+            borde += "----+";
+        }
+        borde += "%n";
+        System.out.format(borde);
     }
 
     private boolean cartaImpresa(List<Carta> impresas, Palo palo, int numero) {
