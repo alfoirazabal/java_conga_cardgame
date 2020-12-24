@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dominio.algoritmos.Shuffler;
+import dominio.carta.*;
 
 public class Mazo {
     
@@ -13,9 +14,9 @@ public class Mazo {
     public Mazo() {
         this.cartasCubiertas = new ArrayList<>();
         this.cartasDescubiertas = new ArrayList<>();
-        for(int i = 0 ; i < Carta.Palo.values().length ; i++) {
+        for(int i = 0 ; i < Palo.PALOS.length ; i++) {
             for(int j = 1 ; j <= 12 ; j++) {
-                Carta nuevaCarta = new Carta(Carta.Palo.values()[i], j);
+                Carta nuevaCarta = new Carta(Palo.PALOS[i], j);
                 this.cartasCubiertas.add(nuevaCarta);
             }
         }

@@ -5,7 +5,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 
-import dominio.Carta;
+import dominio.carta.Carta;
+import dominio.carta.Palo;
 
 public class CartasShufflingMonitor {
 
@@ -25,22 +26,23 @@ public class CartasShufflingMonitor {
 
         System.out.println("\n\n\n\n\n\n\n\n\n\n");
 
-        String formateoTabla = "| %-2d | %-1s | %-1s | %-1s | %-1s |%n";
-        Carta.Palo[] palos = Carta.Palo.values();
+        String formateoTabla = "| %-2d |";
+        for (int i = 0 ; i < Palo.PALOS.length ; i++) {
+            formateoTabla += " %-2s |";
+        }
+        formateoTabla += "%n";
 
         while (aImprimir.size() > 0) {
 
             impresas.add(aImprimir.get(0));
             aImprimir.remove(0);
 
-            System.out.format("+----+---+---+---+---+%n");
-            System.out.format("|    | b | o | c | e |%n");
-            System.out.format("+----+---+---+---+---+%n");
+            imprimirEncabezadoTabla();
 
             for (int i = 1 ; i <= 12 ; i++) {
                 String[] indicadorPalo = new String[4];
-                for (int j = 0 ; j < palos.length ; j++) {
-                    boolean paloIncluido = cartaImpresa(impresas, palos[j], i);
+                for (int j = 0 ; j < Palo.PALOS.length ; j++) {
+                    boolean paloIncluido = cartaImpresa(impresas, Palo.PALOS[j], i);
                     if (paloIncluido) {
                         indicadorPalo[j] = "X";
                     } 
@@ -52,14 +54,34 @@ public class CartasShufflingMonitor {
 
             }
 
-            System.out.format("+----+---+---+---+---+%n");
+            imprimirBordeDeTablaHorizontal();
 
             this.sc.nextLine();
         }
 
     }
 
-    private boolean cartaImpresa(List<Carta> impresas, Carta.Palo palo, int numero) {
+    private void imprimirEncabezadoTabla() {
+        imprimirBordeDeTablaHorizontal();
+        String celdas = "|    |";
+        for (int i = 0 ; i < Palo.PALOS.length ; i++) {
+            celdas += " " + Palo.PALOS[i].getEmoji() + " |";
+        }
+        celdas += "%n";
+        System.out.format(celdas);
+        imprimirBordeDeTablaHorizontal();
+    }
+
+    private void imprimirBordeDeTablaHorizontal() {
+        String borde = "+----+";
+        for (int i = 0 ; i < Palo.PALOS.length ; i++) {
+            borde += "----+";
+        }
+        borde += "%n";
+        System.out.format(borde);
+    }
+
+    private boolean cartaImpresa(List<Carta> impresas, Palo palo, int numero) {
 
         boolean contenida = false;
         Iterator<Carta> itImpresas = impresas.iterator();

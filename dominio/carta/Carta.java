@@ -1,13 +1,6 @@
-package dominio;
+package dominio.carta;
 
 public class Carta {
-    
-    public enum Palo {
-        BASTO,
-        ORO,
-        COPA,
-        ESPADA
-    }
 
     private Palo palo;
     private byte numero;
@@ -26,7 +19,7 @@ public class Carta {
     }
 
     public byte getIdentificador() {
-        int numeroDePalo = this.getPalo().ordinal();
+        int numeroDePalo = this.getPalo().getOrdinal();
         int numeroDeCarta = this.getNumero();
         int identificador = (numeroDePalo * 12) + numeroDeCarta;
         return (byte)identificador;

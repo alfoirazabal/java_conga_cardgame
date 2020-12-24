@@ -1,4 +1,4 @@
-import dominio.Carta;
+import dominio.carta.Carta;
 import dominio.Mazo;
 import dominio.Mazo.NoHayCartasParaLevantar;
 
@@ -10,7 +10,7 @@ public class Conga {
         
         try {
             Carta levantada = mazo.levantar();
-            System.out.println(levantada);
+            System.out.println(levantada.getNumero() + levantada.getPalo().getEmoji());
         } catch (NoHayCartasParaLevantar e) {
             e.printStackTrace();
         }
