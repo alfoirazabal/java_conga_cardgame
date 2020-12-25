@@ -1,15 +1,9 @@
 import dominio.carta.Carta;
 import dominio.carta.Palo;
-import dominio.mano.Mano;
 import dominio.mano.ai.ManoAI;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
-
-import dominio.Mazo;
-import dominio.Mazo.NoHayCartasParaLevantar;
 
 public class Conga {
 

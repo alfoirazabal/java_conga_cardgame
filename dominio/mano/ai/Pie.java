@@ -28,7 +28,9 @@ public class Pie {
 
     private void buscarCrearJugada(List<Carta> cartasNoJugadas) {
         for (Carta cartaNoJugada : cartasNoJugadas) {
-            buscarCrearJugadaParaCarta(cartaNoJugada, cartasNoJugadas);
+            if (!cartaEstaJugada(cartaNoJugada)) {
+                buscarCrearJugadaParaCarta(cartaNoJugada, cartasNoJugadas);
+            }
         }
     }
 
@@ -77,13 +79,19 @@ public class Pie {
             Carta cartaActual = this.cartas.get(i);
             boolean cartaActualJugada = false;
             for (int j = 0 ; !cartaActualJugada && j < this.jugadas.size() ; j++) {
-                cartaActualJugada = this.jugadas.get(j).contains(cartaActual);
+                List<Carta> jugadaActual = this.jugadas.get(j);
+                cartaActualJugada = jugadaActual.contains(cartaActual);
             }
             if (!cartaActualJugada) {
                 cartasNoJugadas.add(cartaActual);
             }
         }
         return cartasNoJugadas;
+    }
+
+    private boolean cartaEstaJugada(Carta carta) {
+        List<Carta> cartasNoJugadas = getCartasNoJugadas();
+        return !cartasNoJugadas.contains(carta);
     }
     
 }
