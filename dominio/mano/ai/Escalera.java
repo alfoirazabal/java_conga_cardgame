@@ -41,7 +41,8 @@ public class Escalera {
         List<Carta> cartasMismoPalo = cartasSinJugada.stream().filter(
             e -> e.getPalo() == cartaActual.getPalo()
         ).collect(Collectors.toList());
-        if (cartasMismoPalo.size() >= 2) {   // Cabe posibilidad de jugada en escalera
+        boolean cartasEnEscalera = estanEsEscalera(cartasMismoPalo, cartaActual);
+        if (cartasEnEscalera && cartasMismoPalo.size() >= 2) {   // Cabe posibilidad de jugada en escalera
             Collections.sort(cartasMismoPalo);
             if (cartaActual.getNumero() == cartasMismoPalo.get(0).getNumero() - 1) {
                 // Hay jugada en escalera
@@ -59,6 +60,20 @@ public class Escalera {
             }
         }
         
+    }
+
+    private boolean estanEsEscalera(List<Carta> cartas, Carta cartaActual) {
+        List<Carta> posibleEscalera = new ArrayList<>();
+        posibleEscalera.addAll(cartas);
+        posibleEscalera.add(cartaActual);
+        Collections.sort(posibleEscalera);
+        boolean sonEscalera = true;
+        for (int i = 0 ; sonEscalera && i < posibleEscalera.size() - 1 ; i++) {
+            Carta cartaDelIndice = posibleEscalera.get(i);
+            Carta cartaSiguiente = posibleEscalera.get(i + 1);
+            sonEscalera = (cartaDelIndice.getNumero() + 1 == cartaSiguiente.getNumero());
+        }
+        return sonEscalera;
     }
 
     private boolean agregarAJugada(Carta carta) {

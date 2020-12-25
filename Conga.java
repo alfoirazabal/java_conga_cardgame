@@ -1,9 +1,5 @@
 import dominio.carta.Carta;
 import dominio.carta.Palo;
-import dominio.mano.ai.ManoAI;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class Conga {
 
@@ -21,16 +17,20 @@ public class Conga {
         debugger.CartasShufflingMonitor monitor = new debugger.CartasShufflingMonitor(mazo.getCartasCubiertas());
         monitor.imprimirTabla();*/
 
-        List<Carta> cartas = new ArrayList<>();
-        ManoAI manoInteligente = new ManoAI(cartas);
-        cartas.add(new Carta(Palo.PALOS[1], 8));
-        cartas.add(new Carta(Palo.PALOS[2], 8));
-        cartas.add(new Carta(Palo.PALOS[0], 7));
-        cartas.add(new Carta(Palo.PALOS[0], 4));
-        cartas.add(new Carta(Palo.PALOS[0], 6));
-        cartas.add(new Carta(Palo.PALOS[0], 5));
-        cartas.add(new Carta(Palo.PALOS[3], 8));
-        manoInteligente.procesarJugadas();
+        debugger.ManoInteligenteMonitor monitor = new debugger.ManoInteligenteMonitor();
+        Carta[] cartasNuevas = {
+            new Carta(0, 6),
+            new Carta(1, 8),
+            new Carta(2, 8),
+            new Carta(0, 4),
+            new Carta(0, 8),
+            new Carta(3, 8),
+            new Carta(0, 7),
+            new Carta(0, 5)
+        };
+        monitor.agregarCartas(cartasNuevas);
+        monitor.imprimirJugadas();
+
     }
 
 }

@@ -10,6 +10,11 @@ public class Carta implements Comparable<Carta> {
         this.numero = (byte)numero;
     }
 
+    public Carta(int numeroDePalo, int numero) {
+        this.palo = Palo.PALOS[numeroDePalo];
+        this.numero = (byte)numero;
+    }
+
     public Palo getPalo() {
         return this.palo;
     }
