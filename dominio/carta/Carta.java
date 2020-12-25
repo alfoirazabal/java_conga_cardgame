@@ -1,6 +1,6 @@
 package dominio.carta;
 
-public class Carta {
+public class Carta implements Comparable<Carta> {
 
     private Palo palo;
     private byte numero;
@@ -28,6 +28,13 @@ public class Carta {
     @Override
     public String toString() {
         return this.getIdentificador() + " - " + this.getNumero() + " de " + this.getPalo().toString().toLowerCase();
+    }
+
+    @Override
+    public int compareTo(Carta otraCarta) {
+        int numeroEstaCarta = (int) this.getNumero();
+        int numeroOtraCarta = (int) otraCarta.getNumero();
+        return numeroEstaCarta - numeroOtraCarta;
     }
 
 }
