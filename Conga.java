@@ -1,11 +1,9 @@
 import dominio.carta.Carta;
-import dominio.Mazo;
-import dominio.Mazo.NoHayCartasParaLevantar;
 
 public class Conga {
 
     public static void main(String[] args) {
-        Mazo mazo = new Mazo();
+        /*Mazo mazo = new Mazo();
         mazo.mezclar();
         
         try {
@@ -16,7 +14,22 @@ public class Conga {
         }
 
         debugger.CartasShufflingMonitor monitor = new debugger.CartasShufflingMonitor(mazo.getCartasCubiertas());
-        monitor.imprimirListaDeCartas(mazo.getCartasCubiertas());
+        monitor.imprimirTabla();*/
+
+        debugger.ManoInteligenteMonitor monitor = new debugger.ManoInteligenteMonitor();
+        Carta[] cartasNuevas = {
+            new Carta(0, 6),
+            new Carta(1, 8),
+            new Carta(2, 8),
+            new Carta(0, 4),
+            new Carta(0, 9),
+            new Carta(3, 8),
+            new Carta(0, 7),
+            new Carta(0, 5)
+        };
+        monitor.agregarCartas(cartasNuevas);
+        monitor.imprimirJugadas();
+
     }
 
 }
