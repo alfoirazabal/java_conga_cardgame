@@ -1,5 +1,4 @@
 import dominio.carta.Carta;
-import dominio.carta.Palo;
 
 public class Conga {
 
@@ -23,7 +22,7 @@ public class Conga {
             new Carta(1, 8),
             new Carta(2, 8),
             new Carta(0, 4),
-            new Carta(0, 8),
+            new Carta(0, 9),
             new Carta(3, 8),
             new Carta(0, 7),
             new Carta(0, 5)

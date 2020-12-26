@@ -41,39 +41,37 @@ public class Escalera {
         List<Carta> cartasMismoPalo = cartasSinJugada.stream().filter(
             e -> e.getPalo() == cartaActual.getPalo()
         ).collect(Collectors.toList());
-        boolean cartasEnEscalera = estanEsEscalera(cartasMismoPalo, cartaActual);
-        if (cartasEnEscalera && cartasMismoPalo.size() >= 2) {   // Cabe posibilidad de jugada en escalera
-            Collections.sort(cartasMismoPalo);
-            if (cartaActual.getNumero() == cartasMismoPalo.get(0).getNumero() - 1) {
-                // Hay jugada en escalera
-                List<Carta> jugada = new ArrayList<>();
-                jugada.add(cartaActual);
-                jugada.addAll(cartasMismoPalo);
-                this.jugadas.add(jugada);
-            }
-            else if (cartaActual.getNumero() == cartasMismoPalo.get(cartasMismoPalo.size() - 1).getNumero() + 1) {
-                // Hay jugada en escalera
-                List<Carta> jugada = new ArrayList<>();
-                jugada.addAll(cartasMismoPalo);
-                jugada.add(jugada.size(), cartaActual);
-                this.jugadas.add(jugada);
-            }
-        }
-        
-    }
-
-    private boolean estanEsEscalera(List<Carta> cartas, Carta cartaActual) {
         List<Carta> posibleEscalera = new ArrayList<>();
-        posibleEscalera.addAll(cartas);
+        posibleEscalera.addAll(cartasMismoPalo);
         posibleEscalera.add(cartaActual);
         Collections.sort(posibleEscalera);
-        boolean sonEscalera = true;
-        for (int i = 0 ; sonEscalera && i < posibleEscalera.size() - 1 ; i++) {
+        int cantidadEnEscalera = 1;
+        boolean escaleraRota = false;
+        for (int i = 0 ; !escaleraRota && i < posibleEscalera.size() - 1 ; i++) {
             Carta cartaDelIndice = posibleEscalera.get(i);
             Carta cartaSiguiente = posibleEscalera.get(i + 1);
-            sonEscalera = (cartaDelIndice.getNumero() + 1 == cartaSiguiente.getNumero());
+            escaleraRota = (cartaDelIndice.getNumero() + 1 != cartaSiguiente.getNumero());
+            if (!escaleraRota) {
+                cantidadEnEscalera++;
+            }
         }
-        return sonEscalera;
+        if (cantidadEnEscalera >= ManoAI.CANTIDAD_MAXIMA_EN_JUGADA) {
+            // Hago jugada de 4
+            List<Carta> jugada = new ArrayList<>();
+            for (int i = 0 ; i < ManoAI.CANTIDAD_MAXIMA_EN_JUGADA ; i++) {
+                jugada.add(posibleEscalera.get(i));
+            }
+            this.jugadas.add(jugada);
+        }
+        else if (cantidadEnEscalera >= ManoAI.CANTIDAD_MINIMA_EN_JUGADA) {
+            // Hago jugada de 3
+            List<Carta> jugada = new ArrayList<>();
+            for (int i = 0 ; i < ManoAI.CANTIDAD_MINIMA_EN_JUGADA ; i++) {
+                jugada.add(posibleEscalera.get(i));
+            }
+            this.jugadas.add(jugada);
+        }
+
     }
 
     private boolean agregarAJugada(Carta carta) {

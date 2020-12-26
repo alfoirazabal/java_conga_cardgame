@@ -7,6 +7,9 @@ import dominio.carta.Carta;
 import dominio.mano.Mano;
 
 public class ManoAI extends Mano {
+
+    public static int CANTIDAD_MAXIMA_EN_JUGADA = 4;
+    public static int CANTIDAD_MINIMA_EN_JUGADA = 3;
     
     private List<List<Carta>> jugadas;
 
