@@ -27,6 +27,12 @@ public class Mazo {
         shuffler.shuffle(this.cartasCubiertas);
     }
 
+    public void mezclar(int semilla) {
+        Shuffler shuffler = new Shuffler();
+        shuffler.setSeed(semilla);
+        shuffler.shuffle(this.cartasCubiertas);
+    }
+
     public void cubrirTodas() {
         this.cartasCubiertas.addAll(this.cartasDescubiertas);
         this.cartasDescubiertas.clear();
