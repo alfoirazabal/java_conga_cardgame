@@ -49,12 +49,12 @@ public class Pie {
 
     private void buscarAgregarAJugadaExistente(Carta cartaNoJugada) {
         List<List<Carta>> jugadasEnPie = getJugadasEnPie();
-        Optional<List<Carta>> optJugadaEnPieDeTresDelMismoPalo = jugadasEnPie.stream().filter(
-            e -> e.size() >= 2 && e.get(0).getPalo() == cartaNoJugada.getPalo()
+        Optional<List<Carta>> optJugadaEnPieDeTresDelMismoNumero = jugadasEnPie.stream().filter(
+            e -> e.size() >= 2 && e.get(0).getNumero() == cartaNoJugada.getNumero()
         ).findFirst();
-        if (optJugadaEnPieDeTresDelMismoPalo.isPresent()) {
-            List<Carta> jugadaEnPieDeTresDelMismoPalo = optJugadaEnPieDeTresDelMismoPalo.get();
-            jugadaEnPieDeTresDelMismoPalo.add(cartaNoJugada);
+        if (optJugadaEnPieDeTresDelMismoNumero.isPresent()) {
+            List<Carta> jugadaEnPieDeTresDelMismoNumero = optJugadaEnPieDeTresDelMismoNumero.get();
+            jugadaEnPieDeTresDelMismoNumero.add(cartaNoJugada);
         }
     }
 
