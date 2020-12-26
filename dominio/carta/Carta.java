@@ -1,5 +1,7 @@
 package dominio.carta;
 
+import java.util.Comparator;
+
 public class Carta implements Comparable<Carta> {
 
     private Palo palo;
@@ -40,6 +42,41 @@ public class Carta implements Comparable<Carta> {
         int numeroEstaCarta = (int) this.getNumero();
         int numeroOtraCarta = (int) otraCarta.getNumero();
         return numeroEstaCarta - numeroOtraCarta;
+    }
+
+    public static class Comparators {
+
+        public static Comparator<Carta> IDENTIFICADOR = new Comparator<>() {
+
+            @Override
+            public int compare(Carta carta1, Carta carta2) {
+                return carta1.getIdentificador() - carta2.getIdentificador();
+            }
+
+        };
+
+        public static Comparator<Carta> NUMERO = new Comparator<>() {
+
+            @Override
+            public int compare(Carta carta1, Carta carta2) {
+                int numeroDeCarta1 = (int) carta1.getNumero();
+                int numeroDeCarta2 = (int) carta2.getNumero();
+                return numeroDeCarta1 - numeroDeCarta2;
+            }
+
+        };
+
+        public static Comparator<Carta> PALO = new Comparator<>() {
+
+            @Override
+            public int compare(Carta carta1, Carta carta2) {
+                Palo paloCarta1 = carta1.getPalo();
+                Palo paloCarta2 = carta2.getPalo();
+                return paloCarta1.getOrdinal() - paloCarta2.getOrdinal();
+            }
+
+        };
+
     }
 
 }

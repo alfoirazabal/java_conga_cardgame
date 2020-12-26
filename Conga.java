@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import debugger.BuscadorDeSemillas;
@@ -39,13 +40,21 @@ public class Conga {
          * (Conga.ImposibleCortar e) { e.printStackTrace(); }
          */
 
-        try {
-            debugger.BuscadorDeSemillas buscador = new debugger.BuscadorDeSemillas();
-            buscador.setMaximoDeIntentos(40000);
-            buscador.imprimirSemillas();
-        } catch (ImposibleCortar e) {
-            e.printStackTrace();
-        }
+        mazo = new Mazo();
+        mazo.mezclar();
+        List<Carta> cartas = mazo.getCartasCubiertas();
+        debugger.CartasShufflingMonitor monitor = new debugger.CartasShufflingMonitor(cartas);
+        System.out.println("CARTAS ENTREVERADAS");
+        monitor.imprimirListaDeCartas(cartas);
+        System.out.println("CARTAS REORDENADAS POR PALO");
+        Collections.sort(cartas, Carta.Comparators.PALO);
+        monitor.imprimirListaDeCartas(cartas);
+        System.out.println("CARTAS REORDENADAS POR NUMERO");
+        Collections.sort(cartas, Carta.Comparators.NUMERO);
+        monitor.imprimirListaDeCartas(cartas);
+        System.out.println("CARTAS REORDENADAS POR IDENTIFICADOR");
+        Collections.sort(cartas, Carta.Comparators.IDENTIFICADOR);
+        monitor.imprimirListaDeCartas(cartas);
 
     }
 
